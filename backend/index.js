@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken';
 import userRoutes from './routes/user.js';
 import jobRoutes from './routes/job.js';
 import log from './middleware/log.js';
+import errorHandler from './middleware/errorHandler.js';
 
 dotenv.config();
 
@@ -42,3 +43,5 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
+
+app.use(errorHandler);
