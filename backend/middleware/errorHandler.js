@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 export default function errorHandler (err, req, res, next) {
     const date = new Date();
     const logFile = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}-error.log`;
