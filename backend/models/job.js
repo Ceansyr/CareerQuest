@@ -50,4 +50,6 @@ const job = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
-})
+});
+
+export default mongoose.model('Job', job);

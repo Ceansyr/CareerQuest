@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 
 export default function Register() {
@@ -10,8 +9,13 @@ export default function Register() {
         confirmPassword: "",
         email: ""
     });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setError("");
         try {
           const res = await fetch("http://localhost:3000/api/user/register", {
 
@@ -21,11 +25,18 @@ export default function Register() {
             },
             body: JSON.stringify(formData),
           })
-          res.status === 200 ? alert("User registered successfully") : alert("Failed to register user")
+          if (res.status === 200) {
+            alert("User registered successfully");
+          } else {
+            const data = await res.json();
+            setError(data.message || "Failed to register user");
+          }
         }
         catch (err) {
           console.log(err);
-          alert("Failed to register user");
+          setError("Failed to register user");
+        } finally {
+          setLoading(false);
         }
     }
     return (
@@ -40,6 +51,7 @@ export default function Register() {
         <input type="email" name="email" id="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
         <button type="submit">Register</button>
       </form>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 }

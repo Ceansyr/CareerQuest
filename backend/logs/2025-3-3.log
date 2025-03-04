@@ -11,3 +11,14 @@ POST /api/user/register ::1
 POST /api/user/register ::1
 POST /api/user/register ::1
 POST /api/user/register ::1
+POST /api/user/login ::1
+POST /api/user/register ::1
+POST /api/user/register ::1
+POST /api/user/register ::1
+POST /api/user/register ::1
+POST /api/user/login ::1
+POST /api/user/login ::1
+POST /api/user/login ::1
+POST /api/user/register ::1
+POST /api/user/register ::1
+POST /api/user/register ::1
