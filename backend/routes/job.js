@@ -5,20 +5,48 @@ import { authMiddleware } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// list all jobs
+// add pegeination to the jobs list
+router.get('/page/:page', async (req, res) => {
+    const page = req.params.page || 1;
+    const limit = 10;
+    const skip = (page - 1) * limit;
+    const jobs = await Job.find().skip(skip).limit(limit);
+    res.status(200).json(jobs);
+});
+
+// list all jobs with filters for name and skills
 router.get('/', async (req, res) => {
-    const jobs = await Job.find();
+    const name = request.params.name || '';
+    const skills = request.params.skills || [];
+    const skillsArray = skills.split(',').map(skill => skill.trim());
+    const jobs = await Job.find({
+      $or : [
+        { title: { $regex: name, $options: 'i' } },
+        { skills: { $in: skillsArray } }
+      ]
+    });
+
     res.status(200).json(jobs);
 });
 
 //create a job
 router.post('/', authMiddleware, async (req, res) => {
     try {
-      const { title, description, company, location, salary, date } = req.body;
-      const jobSkills = req.body.skills.split(',').map(skill => skill.trim());
-      const newJob = new Job({ title, description, company, location, salary, date, skills: jobSkills });
+      const { title, description, company, location, salary, skills, remote, type } = req.body;
+      const jobSkills = skills.split(',').map(skill => skill.trim());
+      const newJob = new Job({ 
+        title, 
+        description, 
+        company, 
+        location, 
+        salary, 
+        skills: jobSkills, 
+        remote, 
+        type,
+        createdBy: req.user._id
+      });
       await newJob.save();
-      res.status(201).json(newJob);
+      res.status(200).json(newJob);
     }
     catch (error) {
       errorHandler(error, req, res);
@@ -68,6 +96,46 @@ router.delete('/:id', authMiddleware, async (req, res) => {
       res.status(200).json({ 
         message: 'Job deleted successfully'
        });
+    }
+    catch (error) {
+      errorHandler(error, req, res);
+    }
+});
+
+// edit a job
+router.put('/:id', authMiddleware, async (req, res) => {
+    try {
+      const job = await Job.findById(req.params.id);
+      if (!job) {
+        return res.status(404).json({ 
+          error: {
+            message: 'Job not found',
+            status: 404
+          }
+         });
+      }
+      if ( job.createdBy.toString() !== req.user._id.toString() ) {
+        return res.status(401).json({ 
+          error: {
+            message: 'You are not authorized to edit this job',
+            status: 401
+          }
+         });
+      }
+      const { title, description, company, location, salary, skills, remote, type } = req.body;
+      const jobSkills = skills.split(',').map(skill => skill.trim());
+      const updatedJob = await Job.findByIdAndUpdate(req.params.id, { 
+        title, 
+        description, 
+        company, 
+        location, 
+        salary, 
+        skills: jobSkills, 
+        remote, 
+        type,
+        updatedAt: Date.now()
+      } , { new: true });
+      res.status(200).json(updatedJob);
     }
     catch (error) {
       errorHandler(error, req, res);
