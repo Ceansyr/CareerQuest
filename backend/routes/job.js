@@ -5,25 +5,21 @@ import { authMiddleware } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// add pegeination to the jobs list
-router.get('/page/:page', async (req, res) => {
-    const page = req.params.page || 1;
-    const limit = 10;
-    const skip = (page - 1) * limit;
-    const jobs = await Job.find().skip(skip).limit(limit);
-    res.status(200).json(jobs);
-});
-
 // list all jobs with filters for name and skills
+//add pagination
 router.get('/', async (req, res) => {
     const name = request.params.name || '';
     const skills = request.params.skills || [];
     const skillsArray = skills.split(',').map(skill => skill.trim());
+    const size = req.params.size || 10;
+    const offset = req.params.offset || 0;
     const jobs = await Job.find({
       $or : [
         { title: { $regex: name, $options: 'i' } },
         { skills: { $in: skillsArray } }
-      ]
+      ],
+      $limit: size,
+      $skip: offset
     });
 
     res.status(200).json(jobs);
