@@ -1,8 +1,9 @@
 import { useState } from "react";
+import "./login.css";
 
 export default function Login() {
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: ""
   });
   const [loading, setLoading] = useState(false);
@@ -35,14 +36,23 @@ export default function Login() {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="username" id="username" placeholder="Username" value={formData.username} onChange={(e) => setFormData({ ...formData, username: e.target.value })} />
-        <input type="password" name="password" id="password" placeholder="Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
-        <button type="submit">Login</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="container">
+      <div className="left-container">
+        <form onSubmit={handleSubmit}>
+          <h1>Already have an account?</h1>
+          <h2>Your personal job finder is here</h2>
+          <input type="text" name="email" id="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+          <input type="password" name="password" id="password" placeholder="Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+          <button type="submit">Login</button>
+          <p>Don&apos;t have an account?  <a href="/register">Sign Up</a></p>
+          {loading && <p style= {{ color: 'blue'}}>Loading...</p> }
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+        </form>
+        
+      </div> 
+      <div className="right-container">
+        <h2>Your Personal Job Finder</h2>
+      </div>
     </div>
   );
 }

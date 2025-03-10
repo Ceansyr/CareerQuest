@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./register.css"
 
 export default function Register() {
     const [formData, setFormData] = useState({
@@ -40,18 +41,30 @@ export default function Register() {
         }
     }
     return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="username" id="username" placeholder="Username" value={formData.username} onChange={(e) => setFormData({ ...formData, username: e.target.value })} />
-        <input type="text" name="name" id="name" placeholder="Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-        <input type="text" name="phone" id="phone" placeholder="Phone" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
-        <input type="password" name="password" id="password" placeholder="Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
-        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })} />
-        <input type="email" name="email" id="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
-        <button type="submit">Register</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    
+    <div className="container">
+      <div className="left-container">
+        <form onSubmit={handleSubmit}>
+          <h1>Create an account?</h1>
+          <h2>Your personal job finder is here</h2>
+          <input type="text" name="name" id="name" placeholder="Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+          <input type="email" name="email" id="email" placeholder="Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+          <input type="text" name="phone" id="phone" placeholder="Mobile" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
+          <input type="password" name="password" id="password" placeholder="Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+          <div className="terms">
+            <input type="checkbox" name="terms" id="terms" required />
+            <label htmlFor="terms">By creating an account, I agree to our terms of use and privacy policy</label>
+          </div>
+          <button type="submit">Create Account</button>
+          <p style={{ paddingTop: "10px"}}>Already have an account?  <a href="/login">Sign In</a></p>
+          {loading && <p style= {{ color: 'blue'}}>Loading...</p> }
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+        </form>
+        
+      </div>
+      <div className="right-container">
+        <h2>Your Personal Job Finder</h2>
+      </div>
     </div>
   );
 }
