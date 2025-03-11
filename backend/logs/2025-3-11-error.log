@@ -1,0 +1,43 @@
+[2025-03-11T04:12:29.349Z] ValidationError: User validation failed: username: Path `username` is required.
+    at Document.invalidate (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\mongoose\lib\document.js:3329:32)
+    at C:\Users\Admin\Projects\CareerQuest\backend\node_modules\mongoose\lib\document.js:3090:17
+    at C:\Users\Admin\Projects\CareerQuest\backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+[2025-03-11T04:13:47.689Z] ValidationError: User validation failed: username: Path `username` is required.
+    at Document.invalidate (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\mongoose\lib\document.js:3329:32)
+    at C:\Users\Admin\Projects\CareerQuest\backend\node_modules\mongoose\lib\document.js:3090:17
+    at C:\Users\Admin\Projects\CareerQuest\backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+[2025-03-11T16:06:32.179Z] TypeError: skills.split is not a function
+    at file:///C:/Users/Admin/Projects/CareerQuest/backend/routes/job.js:32:32
+    at Layer.handle [as handle_request] (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (file:///C:/Users/Admin/Projects/CareerQuest/backend/middleware/auth.js:18:9)
+    at Layer.handle [as handle_request] (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\index.js:346:12)
+[2025-03-11T16:14:41.831Z] TypeError: skills.split is not a function
+    at file:///C:/Users/Admin/Projects/CareerQuest/backend/routes/job.js:32:32
+    at Layer.handle [as handle_request] (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (file:///C:/Users/Admin/Projects/CareerQuest/backend/middleware/auth.js:18:9)
+    at Layer.handle [as handle_request] (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\index.js:346:12)
+[2025-03-11T16:24:02.342Z] TypeError: skills.split is not a function
+    at file:///C:/Users/Admin/Projects/CareerQuest/backend/routes/job.js:32:32
+    at Layer.handle [as handle_request] (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\route.js:149:13)
+    at authMiddleware (file:///C:/Users/Admin/Projects/CareerQuest/backend/middleware/auth.js:18:9)
+    at Layer.handle [as handle_request] (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Admin\Projects\CareerQuest\backend\node_modules\express\lib\router\index.js:346:12)

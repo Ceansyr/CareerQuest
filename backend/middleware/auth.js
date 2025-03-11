@@ -1,4 +1,8 @@
-export const authMiddleware = async (req, res, next) => {
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+
+export const authMiddleware = (req, res, next) => {
     const token = req.headers.authorization;
     if (!token) {
         return res.status(401).json({
@@ -9,7 +13,7 @@ export const authMiddleware = async (req, res, next) => {
         });
     }
     try {
-        const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded;
         next();
     } catch (error) {

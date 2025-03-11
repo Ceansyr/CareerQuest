@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
 const job = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
     company: {
         type: String,
         required: true,
     },
-    location: {
+    logoURL: {
+        type: String,
+        required: false,
+    },
+    jobPosition: {
         type: String,
         required: true,
     },
@@ -17,16 +17,28 @@ const job = new mongoose.Schema({
         type: String,
         required: true,
     },
+    location: {
+        type: String,
+        required: true,
+    },
     description: {
         type: String,
         required: true,
+    },
+    aboutCompany:{
+        type: String,
+        required: false,
     },
     skills: {
         type: Array,
         required: true,
     },
+    additionalInfo: {
+        type: String,
+    },
     remote: {
-        type: Boolean,
+        type: String,
+        enum: ['Remote', 'Office', 'Hybrid'],    
         required: true,
     },
     type: {

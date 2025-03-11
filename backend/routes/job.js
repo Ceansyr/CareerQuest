@@ -28,15 +28,18 @@ router.get('/', async (req, res) => {
 //create a job
 router.post('/', authMiddleware, async (req, res) => {
     try {
-      const { title, description, company, location, salary, skills, remote, type } = req.body;
+      const { company, logoURL, jobPosition, salary, location, description, aboutCompany, skills, additionalInfo, remote, type } = req.body;
       const jobSkills = skills.split(',').map(skill => skill.trim());
       const newJob = new Job({ 
-        title, 
-        description, 
-        company, 
-        location, 
+        company,
+        logoURL,
+        jobPosition,
         salary, 
-        skills: jobSkills, 
+        location,  
+        description,
+        aboutCompany,
+        skills: jobSkills,
+        additionalInfo, 
         remote, 
         type,
         createdBy: req.user._id
@@ -118,15 +121,18 @@ router.put('/:id', authMiddleware, async (req, res) => {
           }
          });
       }
-      const { title, description, company, location, salary, skills, remote, type } = req.body;
+      const { company, logoURL, jobPosition, salary, location, description, aboutCompany, skills, additionalInfo, remote, type } = req.body;
       const jobSkills = skills.split(',').map(skill => skill.trim());
       const updatedJob = await Job.findByIdAndUpdate(req.params.id, { 
-        title, 
-        description, 
-        company, 
-        location, 
+        company,
+        logoURL,
+        jobPosition,
         salary, 
-        skills: jobSkills, 
+        location,  
+        description,
+        aboutCompany,
+        skills: jobSkills,
+        additionalInfo, 
         remote, 
         type,
         updatedAt: Date.now()

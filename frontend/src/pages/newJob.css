@@ -1,0 +1,117 @@
+/* Main container holding the form and image */
+.container {
+    display: flex;
+    overflow: hidden;
+}
+
+/* Left-side form container */
+.form-container {
+    width: 55%;
+    padding-left: 60px;
+    padding-top: 20px;
+    padding-right: 60px;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 144%;
+    letter-spacing: 0%;
+}
+
+/* Form elements */
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: bold;
+    width: 150px; /* Adjust the width as needed */
+}
+
+.input,
+.textarea {
+    flex: 1;
+    padding-left: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    max-width: 500px;
+}
+
+.select {
+    flex: 1;
+    padding-left: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    max-width: 200px;
+}
+
+.textarea {
+    height: 60px;
+    resize: none;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: flex-end   ;
+    margin-top: 20px;
+}
+
+.cancel {
+    background-color: white;
+    color: #C2C2C2;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #CECECE;
+    border-radius: 7px;
+    margin: 0;
+    font-size: 18px;
+    width: 150px;
+}
+
+.submit {
+    background-color: #ED5353;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 7px;
+    margin: 0;
+    font-size: 18px;
+    width: 150px;
+    margin-left: 20px;
+}
+
+/* Right-side image container */
+.image-container {
+    width: 45%;
+    background-image: url('../assets/CareerQuest_BG_newJob.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+}

@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 import "./login.css";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -21,8 +23,11 @@ export default function Login() {
         },
         body: JSON.stringify(formData),
       });
+      const data = await res.json();
       if (res.status === 200 ) {
+        localStorage.setItem('token', data.token);
         alert("Login successful");
+        navigate("/jobs");
       } else  {
         const data = await res.json();
         setError(data.message || "Failed to login user");
