@@ -8,9 +8,9 @@ const router = express.Router();
 // list all jobs with filters for name and skills
 //add pagination
 router.get('/', async (req, res) => {
-    const name = request.params.name || '';
-    const skills = request.params.skills || [];
-    const skillsArray = skills.split(',').map(skill => skill.trim());
+    const name = req.params.name || '';
+    const skills = req.query.skills || '';
+    const skillsArray = typeof skills === 'string' ? skills.split(',').map(skill => skill.trim()) : [];
     const size = req.params.size || 10;
     const offset = req.params.offset || 0;
     const jobs = await Job.find({

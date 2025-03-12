@@ -48,7 +48,11 @@ router.post('/login', errorHandler, async (req, res) => {
         id: existingUser._id,
         email: existingUser.email
       }, process.env.JWT_SECRET, { expiresIn: '1h' });
-      res.status(200).json({ message: 'Login successful', token: token });
+      res.status(200).json({ 
+        message: 'Login successful', 
+        token: token,
+        userName: existingUser.name // Include user name in the response
+      });
     }
   } catch (error) {
     errorHandler(error, req, res);
