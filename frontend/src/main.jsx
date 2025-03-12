@@ -6,12 +6,13 @@ import Register from './pages/register.jsx'
 import Login from './pages/login.jsx'
 import NewJob from './pages/newJob.jsx'
 import Jobs from './pages/jobs.jsx'
+import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
         <Route path='/NewJob' element={<NewJob />} />

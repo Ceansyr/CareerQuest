@@ -26,25 +26,28 @@ export default function NewJob() {
         setLoading(true);
         setError("");
 
-        // Retrieve the token from localStorage
         const token = localStorage.getItem('token');
-        console.log('Token:', token); // Add this line to check if the token is retrieved correctly
+        //console.log('Token:', token); 
 
         try {
             const url = id ? `${import.meta.env.VITE_API_URL}/jobs/${id}` : `${import.meta.env.VITE_API_URL}/jobs`;
-            const skills = typeof formData.skills === 'string' ? formData.skills.split(',').map(skill => skill.trim()) : formData.skills;
+            let skills = formData.skills;
+            if (typeof skills === 'string') {
+                skills = skills.split(',').map(skill => skill.trim());
+            } else if (!Array.isArray(skills)) {
+                skills = [];
+            }
             const res = await fetch(url, {
                 method: id ? "PUT" : "POST",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': token ? `Bearer ${token}` : '' // Ensure the token is included correctly
+                    'Authorization': token ? `${token}` : '' 
                 },
-                body: JSON.stringify({ ...formData, skills }),
+                body: JSON.stringify({ ...formData }),
             });
-            console.log(res);
             if (res.status === 200) {
                 alert(`Job ${id ? 'updated' : 'created'} successfully`);
-                navigate('/jobs'); // Navigate to jobs page after successful submission
+                navigate('/jobs'); 
             } else {
                 const data = await res.json();
                 setError(data.message || `Job ${id ? 'updating' : 'creation'} failed`);

@@ -3,11 +3,9 @@ import "./register.css"
 
 export default function Register() {
     const [formData, setFormData] = useState({
-        username: "",
         name: "",
         phone: "",
         password: "",
-        confirmPassword: "",
         email: ""
     });
     const [loading, setLoading] = useState(false);
@@ -18,8 +16,7 @@ export default function Register() {
         setLoading(true);
         setError("");
         try {
-          const res = await fetch("http://localhost:3000/api/user/register", {
-
+          const res = await fetch(`${import.meta.env.VITE_API_URL}/user/register`, {
             method: "POST",
             headers: {
              "Content-Type": "application/json",
@@ -30,7 +27,7 @@ export default function Register() {
             alert("User registered successfully");
           } else {
             const data = await res.json();
-            setError(data.message || "Failed to register user");
+            setError(data?.message || "Failed to register user");
           }
         }
         catch (err) {

@@ -16,25 +16,35 @@ export default function Login() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("http://localhost:3000/api/user/login", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-      const data = await res.json();
-      if (res.status === 200 ) {
-        localStorage.setItem('token', data.token);
-        alert("Login successful");
-        navigate("/jobs");
-      } else  {
+
+      if (res.status === 200) {
+        const data = await res.json();
+        const { token, userName } = data;
+        if (token && userName) {
+          localStorage.setItem('token', token);
+          localStorage.setItem('user', JSON.stringify(userName));
+          alert("Login successful");
+          navigate("/");
+        } else {
+          setError("Invalid response from server");
+          alert("Login failed");
+        }
+      } else {
         const data = await res.json();
         setError(data.message || "Failed to login user");
+        alert('Login failed');
       }
     } catch (err) {
       console.log(err);
       setError("Failed to login user");
+      alert('Login failed');
     } finally {
       setLoading(false);
     }
