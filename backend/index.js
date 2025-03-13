@@ -14,7 +14,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+  origin: ["https://localhost:3000", "https://career-quest-c267.vercel.app/"]
+}));
 app.use(bodyParser.json());
 app.use(log);
 app.use('/api/user', userRoutes);
