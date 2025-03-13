@@ -15,7 +15,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: ["https://localhost:3000", "https://career-quest-c267.vercel.app", "https://career-quest-lovat.vercel.app"]
+  origin: ["https://localhost:3000", "https://career-quest-c267.vercel.app", "https://career-quest-lovat.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(bodyParser.json());
 app.use(log);
