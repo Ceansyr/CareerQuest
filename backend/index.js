@@ -14,11 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: [
-    "https://localhost:3000",
-    "https://career-quest-c267.vercel.app",
-    "https://career-quest-lovat.vercel.app"
-  ],
+  origin: '*',
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
