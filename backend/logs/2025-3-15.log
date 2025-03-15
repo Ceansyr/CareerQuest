@@ -1,0 +1,8 @@
+GET /api/jobs?name=&skills= ::1
+GET /api/jobs?name=&skills= ::1
+GET /api/jobs?name=&skills=Frontend ::1
+POST /api/user/login ::1
+POST /api/user/register ::1
+POST /api/user/login ::1
+GET /api/jobs?name=&skills= ::1
+GET /api/jobs?name=&skills= ::1
