@@ -3,7 +3,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken'; 
 import userRoutes from './routes/user.js';
 import jobRoutes from './routes/job.js';
 import log from './middleware/log.js';
@@ -16,27 +15,26 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors({
   origin: [
-    "https://localhost:3000", 
-    "https://career-quest-c267-d7w5zj9qk-ceansyrs-projects.vercel.app/", 
-    "https://career-quest-lovat.vercel.app", 
-    "https://career-quest-c267.vercel.app/"
+    "https://localhost:3000",
+    "https://career-quest-c267.vercel.app",
+    "https://career-quest-lovat.vercel.app"
   ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
-  optionsSuccessStatus:200
+  optionsSuccessStatus: 200
 }));
 
-app.options('*', cors());
-
+// Middleware to parse JSON bodies
 app.use(bodyParser.json());
-app.use(log);
 
+// Logging middleware (optional, for debugging)
 app.use((req, res, next) => {
   console.log(`Incoming request: ${req.method} ${req.url}`);
   next();
 });
 
+// Routes
 app.use('/api/user', userRoutes);
 app.use('/api/jobs', jobRoutes);
 
@@ -56,16 +54,15 @@ const connectDB = async () => {
 
 connectDB();
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
-
+// Test route
 app.get('/test', (req, res) => {
   res.json({ message: 'CORS is working!' });
 });
 
+// Error handling middleware
 app.use(errorHandler);
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
