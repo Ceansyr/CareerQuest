@@ -11,10 +11,11 @@ import errorHandler from './middleware/errorHandler.js';
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: '*',
+  origin: "https://career-quest-c267.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
