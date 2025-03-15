@@ -31,6 +31,12 @@ app.options('*', cors());
 
 app.use(bodyParser.json());
 app.use(log);
+
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  next();
+});
+
 app.use('/api/user', userRoutes);
 app.use('/api/jobs', jobRoutes);
 
@@ -56,6 +62,10 @@ app.listen(PORT, () => {
 
 app.get('/', (req, res) => {
   res.send('Hello World');
+});
+
+app.get('/test', (req, res) => {
+  res.json({ message: 'CORS is working!' });
 });
 
 app.use(errorHandler);
